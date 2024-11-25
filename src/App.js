@@ -1,10 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
+import Main from "./Components/Main";
 
 function App() {
   return (
-    <div className="App">
-      <h1 className={'text-xl text-red-500 '}>initialized OrganizeIt app </h1>
+    <div className="">
+
+        <Main/>
     </div>
   );
 }
