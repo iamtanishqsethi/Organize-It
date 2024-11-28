@@ -1,14 +1,14 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { createNewTodo } from "../Utils/newTodosSlice";
-import { useCreateTodo } from "../Utils/useCreateTodo";
+import { useCreateNote } from "../Utils/useCreateNote";
 import {useGetAllTodo} from "../Utils/useGetAllTodo";
 
 const NewNote = () => {
     const title = useRef(null);
     const description = useRef(null);
     const dispatch = useDispatch();
-    const createTodo = useCreateTodo(); // Get the API call function from the hook
+    const createTodo = useCreateNote(); // Get the API call function from the hook
 
 
     const handleClick = () => {

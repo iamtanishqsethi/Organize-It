@@ -7,6 +7,8 @@ import AllNotes from "./Components/AllNotes";
 import Archive from "./Components/Archive";
 import {Provider} from "react-redux";
 import appStore from "./Utils/appStore";
+import NewNote from "./Components/NewNote";
+import CreatedNote from "./Components/CreatedNote";
 
 function App() {
     const appRouter=createBrowserRouter([
@@ -20,7 +22,17 @@ function App() {
                 },
                 {
                     path:"/notes",
-                    element:<AllNotes/>
+                    element:<AllNotes/>,
+                    children:[
+                        {
+                            path:"/notes/",
+                            element:<NewNote/>
+                        },
+                        {
+                            path:"/notes/:id",
+                            element:<CreatedNote/>
+                        }
+                    ]
                 },
                 {
                     path:"/archive",

@@ -3,7 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 const allNotesSlice = createSlice({
     name: "allNotes",
     initialState: {
-        notes:{}
+        notes:[]
     },
     reducers:{
         setNotes: (state, action) => {

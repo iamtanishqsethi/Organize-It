@@ -5,9 +5,7 @@ import {useEffect} from "react";
 export const useGetAllTodo=()=>{
     const dispatch=useDispatch();
 
-    useEffect(() => {
-         getAllTodo()
-    }, []);
+
     const getAllTodo= async ()=>{
         // const fetch = require('node-fetch');
 
@@ -24,5 +22,6 @@ export const useGetAllTodo=()=>{
             console.error(error);
         }
     }
+    return getAllTodo;
 
 }

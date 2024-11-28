@@ -1,4 +1,4 @@
-export const useCreateTodo = () => {
+export const useCreateNote = () => {
     const url = 'https://api.freeapi.app/api/v1/todos/';
     const createTodo = async (title, description) => {
         const options = {
