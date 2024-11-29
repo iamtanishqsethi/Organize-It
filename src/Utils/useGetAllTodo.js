@@ -1,12 +1,12 @@
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {setNotes} from "./allNotesSlice";
-import {useEffect} from "react";
+import {useCallback} from "react";
 
 export const useGetAllTodo=()=>{
     const dispatch=useDispatch();
 
 
-    const getAllTodo= async ()=>{
+    const getAllTodo= useCallback(async ()=>{//using memoization to avoid infinite re renders
         // const fetch = require('node-fetch');
 
         const url = 'https://api.freeapi.app/api/v1/todos/';
@@ -21,7 +21,7 @@ export const useGetAllTodo=()=>{
         } catch (error) {
             console.error(error);
         }
-    }
+    },[dispatch])//render again when the dispatch is triggered
     return getAllTodo;
 
 }

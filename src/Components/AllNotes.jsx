@@ -1,6 +1,4 @@
-import SideBar from "./SideBar";
 import NotesSideBar from "./NotesSideBar";
-import NewNote from "./NewNote";
 import {Outlet} from "react-router-dom";
 
 const AllNotes=()=>{

@@ -3,8 +3,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDeleteNote } from "../Utils/useDeleteNote";
 import { useUpdateNote } from "../Utils/useUpdateNote";
+import {useGetAllTodo} from "../Utils/useGetAllTodo";
 
 const CreatedNote = () => {
+    console.log("note rendered")
     const { id } = useParams();
     const navigate = useNavigate();
     const data = useSelector((store) => store.allNotes?.notes);
@@ -13,28 +15,35 @@ const CreatedNote = () => {
     const [description, setDescription] = useState("");
     const [readOnly, setReadOnly] = useState(true);
 
-    const updateNote = useUpdateNote();
-    const deleteNote = useDeleteNote(id);
+    console.log(title)
+    console.log(description)
 
-    const handleDelete = () => {
-        deleteNote(id);
+    const getTodo=useGetAllTodo()
+    const updateNote = useUpdateNote();
+    const deleteNote = useDeleteNote();
+
+    const handleDelete = async () => {
+        await deleteNote(id);
+        await getTodo()
         navigate("/notes");
     };
 
-    const handleUpdate = () => {
-        updateNote(id, title, description);
+    const handleUpdate = async () => {
+        await updateNote(id, title, description);
+        await getTodo()
         setReadOnly(true);
+
     };
 
-    // Load the note once when the component mounts or the `id` changes
     useEffect(() => {
+        console.log("searching ",id)
         const foundNote = data?.find((x) => x._id === id);
         if (foundNote) {
             setNote(foundNote);
-            setTitle(foundNote.title); // Initialize title state
-            setDescription(foundNote.description); // Initialize description state
+            setTitle(foundNote.title);
+            setDescription(foundNote.description);
         }
-    }, [id, data]);
+    }, [data,id]);
 
     if (!note) {
         return (
@@ -45,7 +54,7 @@ const CreatedNote = () => {
     }
 
     return (
-        <div className="col-span-10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 p-10">
+        <div className="col-span-10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 p-10 relative">
             <input
                 type="text"
                 placeholder="Created Note"
@@ -54,27 +63,30 @@ const CreatedNote = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)} // Update title state
             />
-            {!readOnly ? (
+            <div className={'absolute right-10 top-10 flex flex-col  justify-start'}>
+                {!readOnly ? (
+                    <button
+                        className="bg-green-700 p-3 m-2 font-roboto rounded-lg"
+                        onClick={handleUpdate}
+                    >
+                        Update
+                    </button>
+                ) : (
+                    <button
+                        className="bg-blue-700 p-3 m-2 font-roboto rounded-lg"
+                        onClick={() => setReadOnly(false)}
+                    >
+                        Edit
+                    </button>
+                )}
                 <button
-                    className="bg-green-700 p-3 m-3 font-roboto"
-                    onClick={handleUpdate}
+                    className="bg-red-700 p-3 m-2 font-roboto rounded-lg"
+                    onClick={handleDelete}
                 >
-                    Update
+                    Delete
                 </button>
-            ) : (
-                <button
-                    className="bg-blue-700 p-3 m-3 font-roboto"
-                    onClick={() => setReadOnly(false)}
-                >
-                    Edit
-                </button>
-            )}
-            <button
-                className="bg-red-700 p-3 m-3 font-roboto"
-                onClick={handleDelete}
-            >
-                Delete
-            </button>
+            </div>
+
             <textarea
                 className="w-full h-4/6 m-3 p-3 bg-transparent focus:outline-none"
                 placeholder="What's on your mind today...."

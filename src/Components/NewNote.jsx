@@ -9,37 +9,40 @@ const NewNote = () => {
     const description = useRef(null);
     const dispatch = useDispatch();
     const createTodo = useCreateNote(); // Get the API call function from the hook
+    const getTodo=useGetAllTodo()
 
-
-    const handleClick = () => {
+    const handleClick = async () => {
         const newTitle = title.current.value;
         const newDescription = description.current.value;
 
-        // Update Redux state
         dispatch(createNewTodo({ title: newTitle, description: newDescription }));
 
-        // Trigger API call
-        createTodo(newTitle, newDescription);
+        await createTodo(newTitle, newDescription);
+        await getTodo()
+        title.current.value=""
+        description.current.value=""
+
 
     };
 
     return (
-        <div className="col-span-10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 p-10">
+        <div className="col-span-10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 p-10 relative">
+            <button
+                className="bg-blue-700 p-2 m-3 font-roboto rounded-lg absolute right-10 "
+                onClick={handleClick}
+            >
+                Create Note
+            </button>
             <input
                 ref={title}
                 type="text"
                 placeholder="New Note"
                 className="block w-3/4 m-3 p-3 bg-transparent font-extrabold text-4xl font-roboto focus:outline-none"
             />
-            <button
-                className="bg-blue-700 p-3 m-3 font-roboto"
-                onClick={handleClick}
-            >
-                Create new note
-            </button>
+
             <textarea
                 ref={description}
-                className="w-full h-4/6 m-3 p-3 bg-transparent focus:outline-none"
+                className="w-full h-4/6 m-3 p-3 bg-transparent focus:outline-none text-lg"
                 placeholder="What's on your mind today...."
             ></textarea>
         </div>

@@ -1,10 +1,12 @@
+import {useCallback} from "react";
+
 export const useUpdateNote = () => {
-    const updateNote = async (id,title,description) => {
+    const updateNote = useCallback(async (id,title,description) => {
         const url = 'https://api.freeapi.app/api/v1/todos/'+id;
         const options = {
             method: 'PATCH',
             headers: {accept: 'application/json', 'content-type': 'application/json'},
-            body: `{"description":${description},"title":${title}}`
+            body: JSON.stringify({ title, description })
         };
 
         try {
@@ -14,6 +16,6 @@ export const useUpdateNote = () => {
         } catch (error) {
             console.error(error);
         }
-    }
+    },[])
     return updateNote;
 }
