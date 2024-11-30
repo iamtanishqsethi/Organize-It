@@ -9,7 +9,7 @@ const Body=()=>{
     const isMenuOpen=useSelector(store=>store.config.isMenuOpen)
     return(
         <div className={' w-screen h-screen bg-gradient-to-br from-zinc-950 to-zinc-900 text-white'}>
-            <div className={'grid grid-flow-col w-full grid-cols-12 '}>
+            <div className={'grid grid-flow-col w-full grid-cols-12 overflow-x-hidden'}>
                 <SideBar/>
                 <div className={`${isMenuOpen?'col-span-10':'col-span-11'}`}>
                     <Header/>

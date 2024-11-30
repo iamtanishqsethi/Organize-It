@@ -3,7 +3,7 @@ import {Outlet} from "react-router-dom";
 
 const AllNotes=()=>{
     return (
-        <div className={' pt-16 w-full h-full grid grid-cols-12  '}>
+        <div className={' pt-16 w-full h-screen overflow-y-hidden grid grid-cols-12  '}>
 
             <NotesSideBar/>
             <Outlet/>

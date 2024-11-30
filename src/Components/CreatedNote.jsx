@@ -4,7 +4,9 @@ import { useSelector } from "react-redux";
 import { useDeleteNote } from "../Utils/useDeleteNote";
 import { useUpdateNote } from "../Utils/useUpdateNote";
 import {useGetAllTodo} from "../Utils/useGetAllTodo";
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import CreateIcon from '@mui/icons-material/Create';
+import UpgradeIcon from '@mui/icons-material/Upgrade';
 const CreatedNote = () => {
     console.log("note rendered")
     const { id } = useParams();
@@ -54,7 +56,7 @@ const CreatedNote = () => {
     }
 
     return (
-        <div className="col-span-10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 p-10 relative">
+        <div className="col-span-10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 px-10 h-full  overflow-hidden">
             <input
                 type="text"
                 placeholder="Created Note"
@@ -63,30 +65,30 @@ const CreatedNote = () => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)} // Update title state
             />
-            <div className={'absolute right-10 top-10 flex flex-col  justify-start'}>
+            <div className={' flex   justify-start'}>
                 {!readOnly ? (
                     <button
-                        className="bg-green-700 p-3 m-2 font-roboto rounded-lg"
+                        className="text-gray-400  font-medium  hover:text-blue-700 transition ease-in-out p-3 mx-3 font-roboto rounded-lg"
                         onClick={handleUpdate}
                     >
-                        Update
+                        Update <UpgradeIcon fontSize={"small"}/>
                     </button>
                 ) : (
                     <button
-                        className="bg-blue-700 p-3 m-2 font-roboto rounded-lg"
+                        className="text-gray-400  font-medium hover:text-blue-700 transition ease-in-out p-3 mx-3 font-roboto rounded-lg"
                         onClick={() => setReadOnly(false)}
                     >
-                        Edit
+                        Edit <CreateIcon fontSize={"small"}/>
                     </button>
                 )}
                 <button
-                    className="bg-red-700 p-3 m-2 font-roboto rounded-lg"
+                    className=" text-gray-400 font-medium hover:text-red-500 transition ease-in-out p-3 mx-3 font-roboto rounded-lg"
                     onClick={handleDelete}
                 >
-                    Delete
+                    Delete <DeleteIcon fontSize={"small"}/>
                 </button>
             </div>
-
+            <div className={'w-full h-0.5 my-2 rounded-lg bg-zinc-600'}></div>
             <textarea
                 className="w-full h-4/6 m-3 p-3 bg-transparent focus:outline-none"
                 placeholder="What's on your mind today...."
