@@ -13,9 +13,20 @@ export const useCreateNote = () => {
         try {
             const response = await fetch(url, options);
             const data = await response.json();
-            console.log(data);
+            if(data.statusCode===422){
+                // console.log(data);
+                if(data.errors[0].title===
+                    "Todo title is required"){
+                    window.alert("Enter Valid Title")
+                }
+                else{
+                    window.alert("Enter Valid Description")
+                }
+            }
+
+
         } catch (error) {
-            console.error('Error creating todo:', error);
+            console.error('Error creating note:', error);
         }
     };
 
