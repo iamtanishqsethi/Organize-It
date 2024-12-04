@@ -36,7 +36,17 @@ function App() {
                 },
                 {
                     path:"/archive",
-                    element:<Archive/>
+                    element:<Archive/>,
+                    children:[
+                        {
+                            path:"/archive/:id",
+                            element: <CreatedNote/>
+                        },
+                        {
+                        path:"/archive/",
+                            element: <NewNote/>
+                        }
+                    ]
                 }
             ]
         }
