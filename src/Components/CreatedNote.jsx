@@ -136,6 +136,7 @@ const CreatedNote = () => {
                 value={description}
                 onChange={setDescription}
                 modules={modules}
+                readOnly={readOnly}
             />
         </div>
     );
