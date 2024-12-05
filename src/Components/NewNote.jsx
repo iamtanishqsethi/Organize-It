@@ -34,13 +34,13 @@ const NewNote = () => {
     };
 
     return (
-        <div className="col-span-10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 p-10  sticky">
+        <div className="md:col-span-10 w-screen md:w-full bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 p-4 md:p-10  ">
 
             <input
                 ref={title}
                 type="text"
                 placeholder="New Note"
-                className="block w-3/4 m-3 p-3 bg-transparent font-extrabold text-4xl font-roboto focus:outline-none"
+                className="block w-3/4 m-2 md:m-3 p-2 md:p-3 bg-transparent font-extrabold text-2xl md:text-4xl font-roboto focus:outline-none"
             />
             <button
                 className=" text-gray-400 hover:text-white p-2 mx-3 font-medium transition ease-in-out font-roboto rounded-lg  "
@@ -50,15 +50,9 @@ const NewNote = () => {
             </button>
             <div className={'w-full h-0.5 my-2 rounded-lg bg-zinc-600'}></div>
 
-            {/*<textarea*/}
-            {/*    ref={description}*/}
-            {/*    className="w-full h-1/6 m-3 p-3 bg-transparent focus:outline-none text-lg"*/}
-            {/*    value={value}*/}
-            {/*    placeholder="What's on your mind today...."*/}
-            {/*></textarea>*/}
 
             <ReactQuill
-                className={"border-0 w-full h-3/5 p-3 text-lg"}
+                className={"border-0 w-full h-3/5 p-1.5 md:p-3 md:text-lg"}
                 theme={"snow"}
                 value={value}
                 onChange={setValue}

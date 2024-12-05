@@ -67,14 +67,14 @@ const CreatedNote = () => {
 
     if (!note) {
         return (
-            <div className="col-span-10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 p-10">
+            <div className="md:col-span-10 w-screen md:w-full bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 p-2 md:p-7  ">
                 <p className="text-white font-bold text-xl">Loading...</p>
             </div>
         );
     }
 
     return (
-        <div className="col-span-10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 px-10 h-full  overflow-hidden">
+        <div className="md:col-span-10 w-screen md:w-full bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 p-2 md:p-7  ">
             <input
                 type="text"
                 placeholder="Created Note"
@@ -86,28 +86,28 @@ const CreatedNote = () => {
             <div className={' flex   justify-start'}>
                 {!readOnly ? (
                     <button
-                        className="text-gray-400  font-medium  hover:text-blue-700 transition ease-in-out p-2 mx-3 font-roboto rounded-lg"
+                        className="text-gray-400  font-medium  hover:text-blue-700 transition ease-in-out p-2 mx-1.5 md:mx-3 font-roboto rounded-lg"
                         onClick={handleUpdate}
                     >
                         Update <UpgradeIcon fontSize={"small"}/>
                     </button>
                 ) : (
                     <button
-                        className="text-gray-400  font-medium hover:text-blue-700 transition ease-in-out p-2 mx-3 font-roboto rounded-lg"
+                        className="text-gray-400  font-medium hover:text-blue-700 transition ease-in-out p-2 mx-1.5 md:mx-3 font-roboto rounded-lg"
                         onClick={() => setReadOnly(false)}
                     >
                         Edit <CreateIcon fontSize={"small"}/>
                     </button>
                 )}
                 <button
-                    className=" text-gray-400 font-medium hover:text-red-500 transition ease-in-out p-2 mx-3 font-roboto rounded-lg"
+                    className=" text-gray-400 font-medium hover:text-red-500 transition ease-in-out p-2 mx-1.5 md:mx-3 font-roboto rounded-lg"
                     onClick={handleDelete}
                 >
                     Delete <DeleteIcon fontSize={"small"}/>
                 </button>
 
                 <button
-                    className={` text-gray-400 font-medium ${isComplete?"hover:text-red-500":"hover:text-blue-700"} transition ease-in-out p-2 mx-3 font-roboto rounded-lg`}
+                    className={` text-gray-400 font-medium ${isComplete?"hover:text-red-500":"hover:text-blue-700"} transition ease-in-out p-2 mx-1.5 md:mx-3 font-roboto rounded-lg`}
                     title={isComplete?"Mark pending ?":"Mark Completed ?"}
                     onClick={handleToggle}
                 >{isComplete?"  Completed": "Pending"}<RuleIcon className={"mx-2"}/>
@@ -115,23 +115,16 @@ const CreatedNote = () => {
 
             </div>
             <div className={'flex justify-start'}>
-                <span className={` text-gray-400 font-medium   p-2 mx-3 font-roboto `}>
+                <span className={` text-gray-400 font-medium   p-2 mx-1.5 md:mx-3 font-roboto `}>
                     Created : {createdAt}
                 </span>
-                <span className={` text-gray-400 font-medium   p-2 mx-3 font-roboto `}>
+                <span className={` text-gray-400 font-medium   p-2 mx-1.5 md:mx-3 font-roboto `}>
                     Updated : {updatedAt}
                 </span>
             </div>
             <div className={'w-full h-0.5 my-1 rounded-lg bg-zinc-600'}></div>
-            {/*<textarea*/}
-            {/*    className="w-full h-1/6 m-3 p-3 bg-transparent focus:outline-none"*/}
-            {/*    placeholder="What's on your mind today...."*/}
-            {/*    readOnly={readOnly}*/}
-            {/*    value={description}*/}
-            {/*    onChange={(e) => setDescription(e.target.value)} // Update description state*/}
-            {/*></textarea>*/}
             <ReactQuill
-                className={"border-0 w-full h-3/5 p-3 text-lg"}
+                className={"border-0 w-full h-3/5 p-3 md:text-lg"}
                 theme={"snow"}
                 value={description}
                 onChange={setDescription}

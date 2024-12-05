@@ -9,9 +9,7 @@ import appStore from "../Utils/appStore";
 import {closeMenu, toggleMenu} from "../Utils/configSlice";
 const SideBar=()=>{
     const navigate=useNavigate();
-    // const isMenuOpen=useSelector(store=>store.config.isMenuOpen);
-    // console.log(isMenuOpen)
-    // console.log("render")
+
     const isMenuOpen=useSelector(store=>store.config.isMenuOpen)
     // console.log(isMenuOpen)
     const dispatch = useDispatch();
@@ -19,7 +17,7 @@ const SideBar=()=>{
         dispatch(toggleMenu())
     }
     return(
-        <div className={`${isMenuOpen?'col-span-2':'col-span-1'} bg-zinc-950 h-screen sticky z-10  p-5`}>
+        <div className={`${isMenuOpen?'col-span-2':'col-span-1'} bg-zinc-950 h-screen hidden md:block sticky z-10  p-5`}>
             <div className={'flex items-center justify-between '}>
                 <h1 className={'text-2xl font-extrabold font-roboto cursor-pointer'}
                     onClick={()=>navigate("/")}><span className={`${isMenuOpen?"inline":"hidden"}`}>Organize It </span><span
