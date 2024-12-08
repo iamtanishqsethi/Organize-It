@@ -11,8 +11,9 @@ import RuleIcon from '@mui/icons-material/Rule';
 import {useToggleNote} from "../Utils/useToggleNote";
 import {formatDate, modulesCode} from "../Utils/constants";
 import ReactQuill from "react-quill";
+import CheckIcon from "@mui/icons-material/Check";
 const CreatedNote = () => {
-    // console.log("note rendered")
+
     const { id } = useParams();
     const navigate = useNavigate();
     const data = useSelector((store) => store.allNotes?.notes);
@@ -23,6 +24,7 @@ const CreatedNote = () => {
     const [createdAt,setCreatedAt] = useState("");
     const [updatedAt,setUpdatedAt] = useState("");
     const [readOnly, setReadOnly] = useState(true);
+    const [showMessage,setShowMessage] = useState(false);
 
 
 
@@ -44,12 +46,16 @@ const CreatedNote = () => {
         await updateNote(id, title, description);
         await getTodo()
         setReadOnly(true);
+        setShowMessage(true)
+        setInterval(()=>setShowMessage(false),3000)
 
     };
     const handleToggle=async ()=>{
         await toggleNote(id)
         await getTodo()
         setIsComplete(!isComplete);
+        setShowMessage(true)
+        setInterval(()=>setShowMessage(false),3000)
     }
 
     useEffect(() => {
@@ -74,7 +80,8 @@ const CreatedNote = () => {
     }
 
     return (
-        <div className="md:col-span-10 w-screen md:w-full bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 p-2 md:p-7  ">
+        <div
+            className="md:col-span-10 w-screen md:w-full bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 p-2 md:p-7  ">
             <input
                 type="text"
                 placeholder="Created Note"
@@ -107,12 +114,27 @@ const CreatedNote = () => {
                 </button>
 
                 <button
-                    className={` text-gray-400 font-medium ${isComplete?"hover:text-red-500":"hover:text-blue-700"} transition ease-in-out p-2 mx-1.5 md:mx-3 font-roboto rounded-lg`}
-                    title={isComplete?"Mark pending ?":"Mark Completed ?"}
+                    className={` text-gray-400 font-medium ${isComplete ? "hover:text-red-500" : "hover:text-blue-700"} transition ease-in-out p-2 mx-1.5 md:mx-3 font-roboto rounded-lg`}
+                    title={isComplete ? "Mark pending ?" : "Mark Completed ?"}
                     onClick={handleToggle}
-                >{isComplete?"  Completed": "Pending"}<RuleIcon className={"mx-2"}/>
+                >{isComplete ? "  Completed" : "Pending"}<RuleIcon className={"mx-2"}/>
                 </button>
 
+            </div>
+            <div
+                className={`
+                    fixed top-20 left-1/2 transform -translate-x-1/2 
+                    text-white font-medium bg-blue-700 rounded p-3 
+                    transition-all duration-500 ease-in-out
+                    ${showMessage
+                    ? 'opacity-100 translate-y-0 z-50'
+                    : 'opacity-0 -translate-y-full -z-50'
+                }
+                `}
+            >
+                <h1 className="flex items-center gap-2">
+                    Updated Note <CheckIcon fontSize="small"/>
+                </h1>
             </div>
             <div className={'flex justify-start'}>
                 <span className={` text-gray-400 font-medium   p-2 mx-1.5 md:mx-3 font-roboto `}>

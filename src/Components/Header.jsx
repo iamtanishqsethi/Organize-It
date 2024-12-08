@@ -23,7 +23,7 @@ const Header = () => {
     // console.log(headerPath);
     const handleClick=()=>{
         if(headerPath==="All Notes"|| headerPath==="Archive Notes"){
-            console.log("click")
+            // console.log("click")
             dispatch(toggleMobileMenu())
         }
     }
