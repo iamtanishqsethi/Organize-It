@@ -37,7 +37,7 @@ const NewNote = () => {
             setMessage(<h1 className="flex items-center gap-2">Enter valid Data <CloseIcon fontSize="small"/></h1>)
         }
         setShowMessage(true)
-        setInterval(() => setShowMessage(false), 3000)
+        setTimeout(() => setShowMessage(false), 3000)
 
 
 

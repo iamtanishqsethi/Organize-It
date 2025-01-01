@@ -47,7 +47,11 @@ const CreatedNote = () => {
         await getTodo()
         setReadOnly(true);
         setShowMessage(true)
-        setInterval(()=>setShowMessage(false),3000)
+        setTimeout(()=>{
+            setShowMessage(false)
+
+            }
+            ,3000)
 
     };
     const handleToggle=async ()=>{
@@ -55,7 +59,7 @@ const CreatedNote = () => {
         await getTodo()
         setIsComplete(!isComplete);
         setShowMessage(true)
-        setInterval(()=>setShowMessage(false),3000)
+        setTimeout(()=>setShowMessage(false),3000)
     }
 
     useEffect(() => {
