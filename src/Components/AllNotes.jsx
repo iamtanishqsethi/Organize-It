@@ -7,7 +7,6 @@ const AllNotes=()=>{
 
             <NotesSideBar/>
             <Outlet/>
-            {/*<NewNote/>*/}
         </div>
     )
 }

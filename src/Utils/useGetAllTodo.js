@@ -16,7 +16,7 @@ export const useGetAllTodo=()=>{
         try {
             const response = await fetch(url, options);
             const data = await response.json();
-            // console.log(data);
+
             dispatch(setNotes(data?.data))
         } catch (error) {
             console.error(error);

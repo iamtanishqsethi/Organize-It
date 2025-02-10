@@ -12,7 +12,6 @@ import CloseIcon from '@mui/icons-material/Close';
 
 const NewNote = () => {
     const title = useRef(null);
-    const description = useRef(null);
     const dispatch = useDispatch();
     const createTodo = useCreateNote(); // Get the API call function from the hook
     const getTodo=useGetAllTodo()
@@ -24,7 +23,6 @@ const NewNote = () => {
     const modules=modulesCode
     const handleClick = async () => {
         const newTitle = title.current.value;
-        // const newDescription = description.current.value;
         const newDescription=value
         dispatch(createNewTodo({ title: newTitle, description: newDescription }));
 
@@ -37,7 +35,8 @@ const NewNote = () => {
             setMessage(<h1 className="flex items-center gap-2">Enter valid Data <CloseIcon fontSize="small"/></h1>)
         }
         setShowMessage(true)
-        setTimeout(() => setShowMessage(false), 3000)
+        setTimeout(() => {
+            setShowMessage(false)}, 3000)
 
 
 

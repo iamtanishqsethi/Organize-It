@@ -10,7 +10,7 @@ const ArchiveSideBar=()=>{
     const data = useSelector((store) => store.allNotes.notes);
     const getTodo = useGetAllTodo();
     const dispatch=useDispatch()
-    // console.log(data)
+
     const filteredNotes=(data?.filter(note=>note?.isComplete===true))
     const mobileMenu=useSelector(store=>store.config.isMobileMenuOpen)
     useEffect( () => {

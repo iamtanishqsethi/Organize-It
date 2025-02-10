@@ -14,15 +14,6 @@ export const useCreateNote = () => {
             const response = await fetch(url, options);
             const data = await response.json();
             if(data.statusCode===422){
-                // console.log(data);
-                // if(data.errors[0].title===
-                //
-                //
-                //     window.alert("Enter Valid Title")
-                // }
-                // else{
-                //     window.alert("Enter Valid Description")
-                // }
                 return false;
 
             }

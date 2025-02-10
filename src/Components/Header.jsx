@@ -8,7 +8,7 @@ const Header = () => {
     const location = useLocation();
     const path = location.pathname;
     const [headerPath, setHeaderPath] = useState("Welcome");
-    // console.log(path)
+
     const dispatch=useDispatch()
     useEffect(() => {
         if (path === "/notes" || matchPath("/notes/:id",path)) {//dynamic path matching for router :id elements
@@ -20,10 +20,9 @@ const Header = () => {
         }
     }, [path]);
 
-    // console.log(headerPath);
     const handleClick=()=>{
         if(headerPath==="All Notes"|| headerPath==="Archive Notes"){
-            // console.log("click")
+
             dispatch(toggleMobileMenu())
         }
     }

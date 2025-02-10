@@ -49,7 +49,7 @@ const CreatedNote = () => {
         setShowMessage(true)
         setTimeout(()=>{
             setShowMessage(false)
-
+                console.log('interval')
             }
             ,3000)
 
@@ -63,7 +63,6 @@ const CreatedNote = () => {
     }
 
     useEffect(() => {
-        // console.log("searching ",id)
         const foundNote = data?.find((x) => x._id === id);
         if (foundNote) {
             setIsComplete(foundNote.isComplete)

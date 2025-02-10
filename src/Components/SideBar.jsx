@@ -5,13 +5,12 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import appStore from "../Utils/appStore";
 import {closeMenu, toggleMenu} from "../Utils/configSlice";
 const SideBar=()=>{
     const navigate=useNavigate();
 
     const isMenuOpen=useSelector(store=>store.config.isMenuOpen)
-    // console.log(isMenuOpen)
+
     const dispatch = useDispatch();
     const handleClick=()=>{
         dispatch(toggleMenu())
