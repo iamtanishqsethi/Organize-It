@@ -18,7 +18,7 @@ const NotesSideBar = () => {
 
     if (!data || data?.length === 0) {
         return (
-            <div className={`${mobileMenu?"fixed":"hidden"} md:block backdrop-blur-lg col-span-3 h-screen p-5 flex flex-col text-center items-center justify-start w-full z-10   bg-zinc `}>
+            <div className={`${mobileMenu?"fixed":"hidden"} md:block backdrop-blur-lg col-span-2 h-screen p-5 flex flex-col items-center justify-start w-full z-10 md:sticky  bg-zinc `}>
                 <Link to={"/notes"}><button className="m-3 p-2 bg-blue-700 font-bold font-roboto rounded-lg"
                 onClick={()=>dispatch(closeMobileMenu())}>
                     Create new note <HistoryEduIcon />
@@ -29,7 +29,7 @@ const NotesSideBar = () => {
     }
 
     return (
-        <div className={`${mobileMenu?"fixed":"hidden"} md:block backdrop-blur-lg col-span-2 h-screen p-5 flex flex-col items-center justify-start w-full z-10   bg-zinc `}>
+        <div className={`${mobileMenu?"fixed":"hidden"} md:block backdrop-blur-lg col-span-2 h-screen p-5 flex flex-col items-center justify-start w-full z-10 md:sticky  bg-zinc `}>
             <Link to={"/notes"}><button className="m-3 p-3 bg-blue-700 font-bold font-roboto rounded-lg"
                                         onClick={()=>dispatch(closeMobileMenu())}>
                 Create new note <HistoryEduIcon />
